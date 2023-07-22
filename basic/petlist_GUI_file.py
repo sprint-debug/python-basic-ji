@@ -2,7 +2,7 @@ from tkinter import Tk, ttk, Label, Button, Text, END
 import json
 
 petstores = []
-file_name = 'petstores.json'
+file_name = './basic/petstores.json'
 with open(file_name, 'r') as petstores_file:
     petstores = json.load(petstores_file)
 
@@ -54,6 +54,7 @@ def save_content():
         jsonString = json.dumps(petstores, ensure_ascii=False)
         petstores_file.write(jsonString)
     petstores_file.close()
+# encording은 형태를 설정하기 위해 적어줌.
 
 window = Tk()
 window.title("Pet List Management")
