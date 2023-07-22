@@ -1,11 +1,10 @@
 from tkinter import Tk, ttk, Label, Button, Text, END
+import json
 
-petstores = [
-            {"item": "Persian Adult Female", "price": 93.5},
-            {"item": "Bulldog Male Adult", "price": 18.5},
-            {"item": "Amazon Parrot Adult Male", "price": 193.5},
-            {"item": "Koi Spotted", "price": 18.5}
-        ]
+petstores = []
+file_name = 'petstores.json'
+with open(file_name, 'r') as petstores_file:
+    petstores = json.load(petstores_file)
 
 selected_index = 0
 
@@ -32,7 +31,7 @@ def petstores_selected(event):
 def insert_content():
     item = text_Item.get('1.0', END)
     price = float(text_Price.get('1.0', END))
-    petstore = { 'item': item, 'price': price }
+    petstore = { 'item': item.rstrip(), 'price': price }
     petstores.append(petstore)
     setTreeItems()
 
@@ -41,7 +40,7 @@ def update_content():
     item = text_Item.get('1.0', END)
     price = float(text_Price.get('1.0', END))
     selectedItem = petstores[selected_index]
-    selectedItem['item'] = item
+    selectedItem['item'] = item.rstrip()
     selectedItem['price'] = price
     setTreeItems()
 
@@ -49,6 +48,12 @@ def delete_content():
     global selected_index
     petstores.pop(selected_index)
     setTreeItems()
+
+def save_content():
+    with open(file_name, 'w', encoding='UTF-8') as petstores_file:
+        jsonString = json.dumps(petstores, ensure_ascii=False)
+        petstores_file.write(jsonString)
+    petstores_file.close()
 
 window = Tk()
 window.title("Pet List Management")
@@ -84,10 +89,13 @@ btn_Insert = Button(window, text='Insert', command=insert_content, font=("helvet
 btn_Insert.place(x=100, y=500, width=100, height=30)
 
 btn_Update = Button(window, text='Update', command=update_content, font=("helvetica",14) )
-btn_Update.place(x=250, y=500, width=100, height=30)
+btn_Update.place(x=200, y=500, width=100, height=30)
 
 btn_Delete = Button(window, text='Delete', command=delete_content, font=("helvetica",14) )
-btn_Delete.place(x=400, y=500, width=100, height=30)
+btn_Delete.place(x=300, y=500, width=100, height=30)
+
+btn_Save = Button(window, text='Save', command=save_content, font=("helvetica",14) )
+btn_Save.place(x=400, y=500, width=100, height=30)
 
 # Initialize treePetstores
 setTreeItems()

@@ -1,11 +1,9 @@
 from tkinter import Tk, ttk, Label, Button, Text, END
+import json
 
-petstores = [
-            {"item": "Persian Adult Female", "price": 93.5},
-            {"item": "Bulldog Male Adult", "price": 18.5},
-            {"item": "Amazon Parrot Adult Male", "price": 193.5},
-            {"item": "Koi Spotted", "price": 18.5}
-        ]
+petstores = []
+with open('petstores.json', 'r') as petstores_file:
+    petstores = json.load(petstores_file)
 
 selected_index = 0
 
