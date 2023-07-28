@@ -8,7 +8,9 @@ python 관련 강의
 ```Python-basic-ji
 ├── basic : 파이썬 강의 자료
 ├── survey : 기초, 기본 강의 기반 MBTI 테스트 / tkinter (개인프로젝트)
-│   ├── index.py 
-│   └── questions.json 
+│   ├── index.py 한 화면용 간단 테스트
+│   ├── mbti.py 테스트 심화
+│   ├── questions.json index용 json
+│   └── mbti_questions.json mbti용 json
 └── 
 ``` 
