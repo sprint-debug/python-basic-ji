@@ -1,1 +1,0 @@
-surveyNum(question_num)
