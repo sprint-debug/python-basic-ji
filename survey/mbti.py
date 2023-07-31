@@ -49,7 +49,7 @@ for question_data in questions_data:
     options.append(question_data["options"])
 
 ## StringVar로 하면 처음에 모두 선택이 되어있음. value값을 임의로 설정해줘야만 하나만 선택되어 있음.
-var = StringVar(value="1")
+var = StringVar()
 
 # 초기화
 def init():
@@ -87,7 +87,6 @@ def testStart():
     # 결과 페이지 숨김
     result_frame.place_forget()
  
- 
 # 다음문항 
 def nextBtn():
     global question_num
@@ -104,6 +103,7 @@ def nextBtn():
     
     # 문항의 옵션값 저장
     selected_option = var.get()
+    print(selected_option)
     
     addScores(question_num, selected_option) 
     
@@ -141,12 +141,19 @@ def questionText(question_num):
 def questionOption(question_num):
     # 문항 업뎃
     option_buttons = []
+    # for idx, option in enumerate(options[question_num]):
+    #     option_btn = Radiobutton(survey_frame, text=option, variable=var, value=option, anchor='w', bg="white", font=("Pretendard", 18))
+    #     option_btn.place(x=20, y=252 + (70 * idx), width=310, height=50)
+    #     option_buttons.append(option_btn)
+
+    # option_buttons[1].invoke()
+    
     for idx, option in enumerate(options[question_num]):
-        option_btn = Radiobutton(survey_frame, text=option, variable=var, value=option, anchor='w', bg="white", font=("Pretendard", 18))
+        option_btn = Radiobutton(survey_frame, text=option, variable=var, value=str(option), anchor='w', bg="white", font=("Pretendard", 18))
         option_btn.place(x=20, y=252 + (70 * idx), width=310, height=50)
         option_buttons.append(option_btn)
 
-    option_buttons[1].invoke()
+    # option_buttons[1].invoke()
 
 def processBtn(question_num):
     # 버튼비활성화
@@ -185,6 +192,7 @@ def addScores(question_num, select_option):
     # 값 계산이 보이기 위해 일단 둠.
     test = Label(survey_frame, text=str(scores), wraplength=310)
     test.place(x=20, y=550)
+    
 
 def resultPage():
     global question_num
