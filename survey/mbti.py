@@ -80,6 +80,7 @@ def testStart():
     survey_frame.place(x=0, y=0, width=350, height=750)
     
     survey_progress.step(1)  # 프로그래스바 초기화
+    surveyNum(0)
     
     questionOption(question_num)
     processBtn(question_num)
@@ -166,6 +167,7 @@ def processBtn(question_num):
         big_result.place(x=20, y=472, width=310, height=50)  
     elif question_num <= 0:
         prev_btn.config(state="disabled")
+        next_btn.config(state="normal")
         
         big_result.place_forget()
         big_next.place(x=20, y=472, width=310, height=50) 
