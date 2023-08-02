@@ -7,6 +7,8 @@ python 관련 강의
 ### 파일 구조
 ```Python-basic-ji
 ├── basic : 파이썬 강의 자료
+│   ├── data_operation : 데이터 조작 관련 강의 자료 
+│   └── 
 ├── survey : 기초, 기본 강의 기반 MBTI 테스트 / tkinter (개인프로젝트)
 │   ├── index.py 한 화면용 간단 테스트
 │   ├── mbti.py 테스트 심화
